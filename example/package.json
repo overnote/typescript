@@ -1,0 +1,21 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "ts example",
+  "main": "build/index.js",
+  "repository": "https://github.com/overnote/typescript",
+  "license": "MIT",
+  "_moduleAliases": {
+    "@": "./build",
+    "@api": "./build/services",
+    "@utils": "./build/utils"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "lodash": "^4.17.15",
+    "module-alias": "^2.2.2"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.149"
+  }
+}
