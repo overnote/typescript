@@ -17,6 +17,15 @@
 
 ## 常用语法&关键字
 
+### 设置变量的类型 
+```typescript
+let varName: TypeName // 普通变量
+// 函数只需要在函数头后面加上:类型 表示函数返回值
+function(param1:TypeName,param2:TypeName,...): ReturnTypeName {
+}
+```
+
+
 ### 定义一个类型 ```interface```, ```type```
 ```typescript
 // 定义一个普通变量(假设对象中的phone可能不存在) 用 interface 和 type 分别写 一个 User类型
@@ -65,7 +74,7 @@ interface Dog extends Animal{
 // 不可以同时用 type 和interface 定义同一个类型
 type User = {
   readonly name: string
-  age: string
+  age: number
   phone?: string
 }
 // type 一般用来 定义类型别名,组合,元组,合并类型等等
