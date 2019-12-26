@@ -119,7 +119,7 @@ type UserKeys = keyof User// 'name'|'age'
 let k: UserKeys
 ```
 
-### 继承类型 ```extends```,还可以再泛型中设置泛型参数的类型
+### 继承类型 ```extends```,还可以在泛型中设置泛型参数的类型
 
 ### 合并多个类型 ```&``` 将2个类型合并为一个
 

@@ -41,6 +41,7 @@ interface JsonRes<T>{
   function request<T>(data:any) :Promise<JsonRes<T>> {
     // xxx 
   }
+  // 这里函数没有设置返回值,因为ts会自动推断,所以可以省略
   async function getUserInfo<T>(data:{id:number}){
     return request<T>(data)
   }
