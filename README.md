@@ -27,8 +27,8 @@
 + **[基础](https://github.com/overnote/typescript/tree/master/02基础)**
 + **[泛型](https://github.com/overnote/typescript/tree/master/03泛型)**
 + **[高级类型](https://github.com/overnote/typescript/tree/master/04高级类型)**
-+ **[JSX](https://github.com/overnote/typescript/tree/master/05JSX)**
-+ **[配置](https://github.com/overnote/typescript/tree/master/06配置)**
-+ **[常见问题](https://github.com/overnote/typescript/tree/master/07常见问题)**
 + **[example](https://github.com/overnote/typescript/tree/master/example)**
+<!-- + **[JSX](https://github.com/overnote/typescript/tree/master/05JSX)** -->
+<!-- + **[配置](https://github.com/overnote/typescript/tree/master/06配置)** -->
+<!-- + **[常见问题](https://github.com/overnote/typescript/tree/master/07常见问题)** -->
 
