@@ -1,9 +1,9 @@
 # 基础
 
-## 常用类型
+## 基本类型
   布尔 ```boolean```
 
-  数字 ```number```
+  数字 ```number,bitint```
 
   字符串 ```string```
   
@@ -11,9 +11,19 @@
   
   元组 ```[类型1,类型2,...]``` : 一定长度的各种类型的集合 不常用 跟数组的区别就是元组里面长度是固定的
 
-  任意 ```any``` : 设置一个变量可以为任意类型的值,建议少用
+  任意 ```any``` : 设置一个变量可以为任意类型的值,建议熟悉ts后不用此类型,初学阶段能不用就不用
 
-  空值 ```void```: 函数没有函数值 或者 return; 表示返回值为void
+  空值 ```void```: 函数没有函数值或返回undefined 或者 return;  表示返回值为void
+
+  null ```null``` 
+
+  symbol ```symbol``` js中的 Symbol 表示唯一的值
+
+  对象 ```object``` 不常用,一般用interface定义
+
+  未知类型 ```unknown``` 设置为此类型表示后面使用此值必须重新定义类型 与 as 一起用 比如```JSON.parse(str) as User```
+  
+  不可能返回类型 ```never``` 比如一个函数了执行了不会终止while(1){} 那么就没有返回值,或者函数调用总是会抛出异常 那么也是不会有返回值
 
 ## 常用语法&关键字
 
@@ -80,7 +90,8 @@ type User = {
 // type 一般用来 定义类型别名,组合,元组,合并类型等等
 
 type Id = number // 定义类型别名Id  Id表示的就是number
-type Gender = '男'|'女' // 定义组合类型 类似于枚举,ts的枚举我不一般不用,都用这个代替
+type Gender = '男'|'女' // 定义组合类型 类似于枚举
+type T1 = string | number | User // 类型可以随便写 少用,一般用于字面类型
 type Param = [ 1, "buffge" ]// 定义元组
 // 组合两个类型 这里的 & 是组合语法
 type UserWithEmail = User & {
@@ -88,7 +99,7 @@ type UserWithEmail = User & {
 }
 
 ```
-  重新声明变量或模块的类型 ```declare```,有些lib并没有提供ts类型定义文件(.d.ts),我们可以通过
+###  重新声明变量或模块的类型 ```declare```,有些lib并没有提供ts类型定义文件(.d.ts),我们可以通过
   ```declare```给库加上类型
 ```typescript
 import libA from 'libA'
@@ -100,7 +111,18 @@ declare module "libA" {
   export const var1: number
 }
 ```
- 
+
+### 类型断言
+> 有些类型是any 需要赋给他真实的类型
+```typescript
+let a: any = []
+// 语法1 推荐
+console.log((a as number[]).length)
+// 语法2 不推荐 与jsx语法冲突 了解一下即可
+console.log(<number[]>a.length)
+```
+
+
 type 常用操作
 
 * 声明新类型 相当于C语言 typedef ```type Id = number```

@@ -1,28 +1,58 @@
+import { ConditionType, JsonReturnCode } from "@/utils/constant"
 import axios, { AxiosRequestConfig } from "axios"
 import _ from "lodash"
-import { JsonReturnCode, ConditionType } from "@utils/constant"
-export function delay(time: number) {
-  return new Promise(s => setTimeout(s, time))
+export type DefaultScene = "default" | "admin"
+export interface BaseExtra<S extends string> {
+  scene: S
 }
-export interface DbBase {
+export interface UpdateRespData {
+  affectRows: number
+}
+export type DelRespData = UpdateRespData
+export interface DbBaseField {
   id: number
-  ctime: string
-  utime: string
-  dtime: string
+  ctime?: string
+  utime?: string
+  dtime?: number
 }
-export type ListFilter = Record<
-  string,
-  {
-    condition: ConditionType
-    val: any
-  }
->
-export interface ListParam {
+export type FilterVal = boolean | string | number | string[] | number[]
+export type DefaultOrderKeys = "id" | "ctime"
+export interface GetListParam<
+  F extends string = any,
+  O extends string = DefaultOrderKeys,
+  E extends BaseExtra<any> = BaseExtra<DefaultScene>
+> {
   page?: number
   limit?: number
-  filter?: ListFilter
-  order?: Record<string, "desc" | "asc">
-  extra?: Record<string, any>
+  filter?: Partial<Record<F, { condition: ConditionType; val: FilterVal }>>
+  order?: Partial<Record<O, "desc" | "asc">>
+  extra?: Partial<E> // 扩展用来放一些其他参数 比如withSubUsers:true,表示带上所有的子用户
+}
+
+// 上传图片
+export async function antdUploadImg(formData: FormData) {
+  return bpost({
+    url: "/antdUploadImg",
+    data: formData,
+  })
+}
+// 获取obj-url 图片的blob数据
+export function getBlobFromObjectUrl(url: string) {
+  return new Promise<Blob>((s, j) => {
+    let xhr = new XMLHttpRequest()
+    xhr.open("GET", url, true)
+    xhr.responseType = "blob"
+    xhr.onload = function() {
+      if (this.status === 200) {
+        let blob = this.response
+        s(blob)
+      }
+    }
+    xhr.onerror = () => {
+      j("get Object.Url failed")
+    }
+    xhr.send()
+  })
 }
 export interface JsonRes<T = unknown> {
   code: number

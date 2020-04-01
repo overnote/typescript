@@ -76,3 +76,23 @@ const idMapName:Record<number,string> ={
 
 ```
 
+## 函数类型
+```typescript
+// 声明一个只有一个函数签名的interface
+interface AddFn {
+  (a: number, b: number): number
+}
+// 用type 也可以实现
+type AddFn2 = (a: number, b: number) => number
+let fn1: AddFn = (a: number, b: number) => a + b
+let fn2: AddFn2 = (a: number, b: number) => a + b
+```
+## 字面意义类型
+```typescript
+type Gender = "男" | "女" | "未知"
+type Status = 0 | 1
+let g1: Gender = "男" // ok
+let g2: Gender = "man" // error
+let status1: Status = 1 // ok
+let status2: Status = 3 // error
+```

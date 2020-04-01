@@ -77,7 +77,7 @@ interface JsonRes<T extends {length:number}>{
   data:T
 }
 type A = JsonRes<{ a: number; length: number }> // ok
-type B = JsonRes<[]> // ok 参数类型是数组 数组有一个类型为number 的 length属性
+type B = JsonRes<any[]> // ok 参数类型是数组 数组有一个类型为number 的 length属性
 
 // 以ts内置高级类型 Pick 举例
 // lib.es5.d.ts 中声明了Pick
